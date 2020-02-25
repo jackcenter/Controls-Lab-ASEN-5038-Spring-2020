@@ -12,4 +12,4 @@ clear; clc; close all;
     
 
 
-    save('PD_Initialize', 'A', 'T', 'dT', 'F')
+    save('Pendulum_SS_Init_Data', 'T', 'dT')
