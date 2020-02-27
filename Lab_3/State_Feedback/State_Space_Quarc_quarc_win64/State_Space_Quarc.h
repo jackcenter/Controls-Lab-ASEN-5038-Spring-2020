@@ -7,9 +7,9 @@
  *
  * Code generation for model "State_Space_Quarc".
  *
- * Model version              : 1.236
+ * Model version              : 1.237
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Feb 25 14:57:43 2020
+ * C source code generated on : Thu Feb 27 13:15:28 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,6 +20,7 @@
 
 #ifndef RTW_HEADER_State_Space_Quarc_h_
 #define RTW_HEADER_State_Space_Quarc_h_
+#include <math.h>
 #include <string.h>
 #ifndef State_Space_Quarc_COMMON_INCLUDES_
 # define State_Space_Quarc_COMMON_INCLUDES_
@@ -936,6 +937,12 @@ struct P_State_Space_Quarc_T_ {
   real_T Ki[2];                        /* Variable: Ki
                                         * Referenced by: '<Root>/Gain2'
                                         */
+  real_T b;                            /* Variable: b
+                                        * Referenced by: '<Root>/Gain'
+                                        */
+  real_T c;                            /* Variable: c
+                                        * Referenced by: '<Root>/Gain'
+                                        */
   uint32_T HILWrite_analog_channels; /* Mask Parameter: HILWrite_analog_channels
                                       * Referenced by: '<S1>/HIL Write'
                                       */
@@ -1021,10 +1028,10 @@ struct P_State_Space_Quarc_T_ {
   real_T MotorDir_Gain;                /* Expression: -1
                                         * Referenced by: '<S1>/Motor Dir '
                                         */
-  real_T DeadZone_Start;               /* Expression: -0.05
+  real_T DeadZone_Start;               /* Expression: -0.01
                                         * Referenced by: '<Root>/Dead Zone'
                                         */
-  real_T DeadZone_End;                 /* Expression: 0.05
+  real_T DeadZone_End;                 /* Expression: 0.01
                                         * Referenced by: '<Root>/Dead Zone'
                                         */
   int32_T HILInitialize_CKChannels;

@@ -1,1 +1,1 @@
-save('SS_Integrator_Dead_Data','Time','U','r','Theta','dTheta')
+save('SS_LQI_Dead_Data.mat','Time','U','r','Theta','dTheta')

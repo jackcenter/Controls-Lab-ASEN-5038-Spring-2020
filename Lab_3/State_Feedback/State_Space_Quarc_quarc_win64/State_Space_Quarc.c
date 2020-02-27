@@ -7,9 +7,9 @@
  *
  * Code generation for model "State_Space_Quarc".
  *
- * Model version              : 1.236
+ * Model version              : 1.237
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Feb 25 14:57:43 2020
+ * C source code generated on : Thu Feb 27 13:15:28 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -39,7 +39,6 @@ void State_Space_Quarc_output(void)
   real_T rtb_Gain5;
   real_T rtb_MotorDir;
   real_T currentTime;
-  real_T rtb_Gain5_tmp_idx_1;
 
   /* S-Function (hil_read_encoder_block): '<S1>/HIL Read Encoder' */
 
@@ -90,20 +89,14 @@ void State_Space_Quarc_output(void)
 
   /* End of Step: '<Root>/Step' */
 
-  /* Sum: '<Root>/Sum' incorporates:
-   *  Gain: '<Root>/Gain1'
-   *  Sum: '<Root>/Sum2'
-   */
-  currentTime = State_Space_Quarc_P.G[0] * State_Space_Quarc_B.Step -
-    State_Space_Quarc_B.ServoCountstoRad;
-  rtb_Gain5_tmp_idx_1 = State_Space_Quarc_P.G[1] * State_Space_Quarc_B.Step -
-    State_Space_Quarc_B.TachDir;
-
   /* Gain: '<Root>/Gain5' incorporates:
+   *  Gain: '<Root>/Gain1'
    *  Sum: '<Root>/Sum'
    */
-  rtb_Gain5 = State_Space_Quarc_P.K[0] * currentTime + State_Space_Quarc_P.K[1] *
-    rtb_Gain5_tmp_idx_1;
+  rtb_Gain5 = (State_Space_Quarc_P.G[0] * State_Space_Quarc_B.Step -
+               State_Space_Quarc_B.ServoCountstoRad) * State_Space_Quarc_P.K[0]
+    + (State_Space_Quarc_P.G[1] * State_Space_Quarc_B.Step -
+       State_Space_Quarc_B.TachDir) * State_Space_Quarc_P.K[1];
 
   /* Gain: '<Root>/Gain2' incorporates:
    *  DiscreteIntegrator: '<Root>/Discrete-Time Integrator'
@@ -113,8 +106,12 @@ void State_Space_Quarc_output(void)
     State_Space_Quarc_P.Ki[1] *
     State_Space_Quarc_DW.DiscreteTimeIntegrator_DSTATE[1];
 
-  /* Sum: '<Root>/Sum1' */
-  State_Space_Quarc_B.Sum1 = rtb_Gain5 + rtb_MotorDir;
+  /* Sum: '<Root>/Sum1' incorporates:
+   *  Gain: '<Root>/Gain'
+   *  Trigonometry: '<Root>/Trigonometric Function'
+   */
+  State_Space_Quarc_B.Sum1 = (State_Space_Quarc_P.b / State_Space_Quarc_P.c *
+    sin(State_Space_Quarc_B.Step) + rtb_Gain5) + rtb_MotorDir;
 
   /* Saturate: '<S1>/Saturation' */
   if (State_Space_Quarc_B.Sum1 > State_Space_Quarc_P.Saturation_UpperSat) {
@@ -156,27 +153,16 @@ void State_Space_Quarc_output(void)
   /* Clock: '<Root>/Clock' */
   State_Space_Quarc_B.Clock = State_Space_Quarc_M->Timing.t[0];
 
-  /* DeadZone: '<Root>/Dead Zone' incorporates:
-   *  Sum: '<Root>/Sum2'
-   */
-  if (currentTime > State_Space_Quarc_P.DeadZone_End) {
-    State_Space_Quarc_B.DeadZone[0] = currentTime -
-      State_Space_Quarc_P.DeadZone_End;
-  } else if (currentTime >= State_Space_Quarc_P.DeadZone_Start) {
+  /* DeadZone: '<Root>/Dead Zone' */
+  if (0.0 > State_Space_Quarc_P.DeadZone_End) {
+    State_Space_Quarc_B.DeadZone[0] = 0.0 - State_Space_Quarc_P.DeadZone_End;
+    State_Space_Quarc_B.DeadZone[1] = 0.0 - State_Space_Quarc_P.DeadZone_End;
+  } else if (0.0 >= State_Space_Quarc_P.DeadZone_Start) {
     State_Space_Quarc_B.DeadZone[0] = 0.0;
-  } else {
-    State_Space_Quarc_B.DeadZone[0] = currentTime -
-      State_Space_Quarc_P.DeadZone_Start;
-  }
-
-  if (rtb_Gain5_tmp_idx_1 > State_Space_Quarc_P.DeadZone_End) {
-    State_Space_Quarc_B.DeadZone[1] = rtb_Gain5_tmp_idx_1 -
-      State_Space_Quarc_P.DeadZone_End;
-  } else if (rtb_Gain5_tmp_idx_1 >= State_Space_Quarc_P.DeadZone_Start) {
     State_Space_Quarc_B.DeadZone[1] = 0.0;
   } else {
-    State_Space_Quarc_B.DeadZone[1] = rtb_Gain5_tmp_idx_1 -
-      State_Space_Quarc_P.DeadZone_Start;
+    State_Space_Quarc_B.DeadZone[0] = 0.0 - State_Space_Quarc_P.DeadZone_Start;
+    State_Space_Quarc_B.DeadZone[1] = 0.0 - State_Space_Quarc_P.DeadZone_Start;
   }
 
   /* End of DeadZone: '<Root>/Dead Zone' */
@@ -531,10 +517,10 @@ RT_MODEL_State_Space_Quarc_T *State_Space_Quarc(void)
   State_Space_Quarc_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  State_Space_Quarc_M->Sizes.checksums[0] = (942681469U);
-  State_Space_Quarc_M->Sizes.checksums[1] = (857420827U);
-  State_Space_Quarc_M->Sizes.checksums[2] = (1334207839U);
-  State_Space_Quarc_M->Sizes.checksums[3] = (4024413711U);
+  State_Space_Quarc_M->Sizes.checksums[0] = (943419582U);
+  State_Space_Quarc_M->Sizes.checksums[1] = (2349333666U);
+  State_Space_Quarc_M->Sizes.checksums[2] = (577802019U);
+  State_Space_Quarc_M->Sizes.checksums[3] = (3056904190U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -614,9 +600,9 @@ RT_MODEL_State_Space_Quarc_T *State_Space_Quarc(void)
   State_Space_Quarc_M->Sizes.numU = (0);/* Number of model inputs */
   State_Space_Quarc_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   State_Space_Quarc_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  State_Space_Quarc_M->Sizes.numBlocks = (27);/* Number of blocks */
+  State_Space_Quarc_M->Sizes.numBlocks = (28);/* Number of blocks */
   State_Space_Quarc_M->Sizes.numBlockIO = (6);/* Number of block outputs */
-  State_Space_Quarc_M->Sizes.numBlockPrms = (85);/* Sum of parameter "widths" */
+  State_Space_Quarc_M->Sizes.numBlockPrms = (87);/* Sum of parameter "widths" */
   return State_Space_Quarc_M;
 }
 

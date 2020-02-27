@@ -7,9 +7,9 @@
  *
  * Code generation for model "State_Space_Quarc".
  *
- * Model version              : 1.236
+ * Model version              : 1.237
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Feb 25 14:57:43 2020
+ * C source code generated on : Thu Feb 27 13:15:28 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -31,12 +31,22 @@ P_State_Space_Quarc_T State_Space_Quarc_P = {
   /* Variable: K
    * Referenced by: '<Root>/Gain5'
    */
-  { 9.9322281813749633, 0.83081423695758316 },
+  { 5.5197006597837781, 6.4608912967780432 },
 
   /* Variable: Ki
    * Referenced by: '<Root>/Gain2'
    */
   { 10.0, 0.0 },
+
+  /* Variable: b
+   * Referenced by: '<Root>/Gain'
+   */
+  36.29,
+
+  /* Variable: c
+   * Referenced by: '<Root>/Gain'
+   */
+  20.51,
 
   /* Mask Parameter: HILWrite_analog_channels
    * Referenced by: '<S1>/HIL Write'
@@ -178,15 +188,15 @@ P_State_Space_Quarc_T State_Space_Quarc_P = {
    */
   -1.0,
 
-  /* Expression: -0.05
+  /* Expression: -0.01
    * Referenced by: '<Root>/Dead Zone'
    */
-  -0.05,
+  -0.01,
 
-  /* Expression: 0.05
+  /* Expression: 0.01
    * Referenced by: '<Root>/Dead Zone'
    */
-  0.05,
+  0.01,
 
   /* Computed Parameter: HILInitialize_CKChannels
    * Referenced by: '<S1>/HIL Initialize'

@@ -1,0 +1,32 @@
+clear; clc; close all;
+load("Pendelum_TF2.mat")
+load("Pendulum_SS_Init_Data")
+
+A = [0, 1; -b, -a];
+B = [0, c]';
+C = eye(2);
+D = [0, 0]';
+
+K = place(A,B, [-14, -13]);   % State feedback 
+eigs(A-B*K)
+
+G = [1, 0]';
+Ki = [10 0];
+
+%% LQR
+
+% Q = eye(2)
+Q = [1 0; 0 0.01];
+r = 0.01;
+R = r*eye(1);
+
+K = lqr(A, B, Q, R);
+eigs(A-B*K);
+
+%% LQI
+sys = ss(A,B,C,D);
+Q = eye(4);
+r = 1;
+R = r*eye(1);
+
+K_joint = lqi(sys, Q, R)

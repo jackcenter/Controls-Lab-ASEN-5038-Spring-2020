@@ -7,9 +7,9 @@
  *
  * Code generation for model "State_Space_Quarc".
  *
- * Model version              : 1.236
+ * Model version              : 1.237
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Feb 25 14:57:43 2020
+ * C source code generated on : Thu Feb 27 13:15:28 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
