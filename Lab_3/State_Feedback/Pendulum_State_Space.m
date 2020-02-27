@@ -4,7 +4,6 @@ load("Pendulum_SS_Init_Data")
 
 A = [0, 1; -b, -a];
 B = [0, c]';
-C = eye(2);
 C_lqi = [1 0];
 D_lqi = 0;
 
@@ -34,4 +33,9 @@ R = r*eye(1);
 K = K_joint(1:2)
 Ki = -K_joint(3)
 lambdas
+
+%% Sin Tracking ?
+a = 1;
+omega = 1;
+phi = 0;
 
