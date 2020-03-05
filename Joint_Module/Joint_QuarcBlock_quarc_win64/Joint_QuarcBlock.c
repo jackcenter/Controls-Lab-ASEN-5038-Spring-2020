@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.240
+ * Model version              : 1.241
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar  3 14:52:17 2020
+ * C source code generated on : Thu Mar  5 14:48:22 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -146,15 +146,17 @@ void Joint_QuarcBlock_output(void)
 
   /* End of Sum: '<Root>/Sum of Elements' */
 
+  /* Sum: '<Root>/Sum' */
+  Joint_QuarcBlock_B.Sum = Joint_QuarcBlock_B.SumofElements -
+    Joint_QuarcBlock_B.ServoCountstoRad;
+
   /* Saturate: '<S1>/Saturation' */
-  if (Joint_QuarcBlock_B.SumofElements > Joint_QuarcBlock_P.Saturation_UpperSat)
-  {
+  if (Joint_QuarcBlock_B.Sum > Joint_QuarcBlock_P.Saturation_UpperSat) {
     rtb_MotorDir = Joint_QuarcBlock_P.Saturation_UpperSat;
-  } else if (Joint_QuarcBlock_B.SumofElements <
-             Joint_QuarcBlock_P.Saturation_LowerSat) {
+  } else if (Joint_QuarcBlock_B.Sum < Joint_QuarcBlock_P.Saturation_LowerSat) {
     rtb_MotorDir = Joint_QuarcBlock_P.Saturation_LowerSat;
   } else {
-    rtb_MotorDir = Joint_QuarcBlock_B.SumofElements;
+    rtb_MotorDir = Joint_QuarcBlock_B.Sum;
   }
 
   /* End of Saturate: '<S1>/Saturation' */
@@ -541,10 +543,10 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
   Joint_QuarcBlock_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  Joint_QuarcBlock_M->Sizes.checksums[0] = (902688086U);
-  Joint_QuarcBlock_M->Sizes.checksums[1] = (1242474280U);
-  Joint_QuarcBlock_M->Sizes.checksums[2] = (4200520688U);
-  Joint_QuarcBlock_M->Sizes.checksums[3] = (3005918593U);
+  Joint_QuarcBlock_M->Sizes.checksums[0] = (3941525393U);
+  Joint_QuarcBlock_M->Sizes.checksums[1] = (770255765U);
+  Joint_QuarcBlock_M->Sizes.checksums[2] = (3289268796U);
+  Joint_QuarcBlock_M->Sizes.checksums[3] = (479546912U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -573,6 +575,7 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
     Joint_QuarcBlock_B.TachDir = 0.0;
     Joint_QuarcBlock_B.ServoCountstoRad1 = 0.0;
     Joint_QuarcBlock_B.SumofElements = 0.0;
+    Joint_QuarcBlock_B.Sum = 0.0;
     Joint_QuarcBlock_B.Clock = 0.0;
   }
 
@@ -634,8 +637,8 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
   Joint_QuarcBlock_M->Sizes.numU = (0);/* Number of model inputs */
   Joint_QuarcBlock_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   Joint_QuarcBlock_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  Joint_QuarcBlock_M->Sizes.numBlocks = (22);/* Number of blocks */
-  Joint_QuarcBlock_M->Sizes.numBlockIO = (5);/* Number of block outputs */
+  Joint_QuarcBlock_M->Sizes.numBlocks = (24);/* Number of blocks */
+  Joint_QuarcBlock_M->Sizes.numBlockIO = (6);/* Number of block outputs */
   Joint_QuarcBlock_M->Sizes.numBlockPrms = (878);/* Sum of parameter "widths" */
   return Joint_QuarcBlock_M;
 }

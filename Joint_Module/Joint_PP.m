@@ -1,1 +1,1 @@
-save('Joint_SI_Data.mat','Time','u','Theta','dTheta','Alpha')
+save('Joint_SI_CL_Data.mat','Time','r','u','Theta','dTheta','Alpha')

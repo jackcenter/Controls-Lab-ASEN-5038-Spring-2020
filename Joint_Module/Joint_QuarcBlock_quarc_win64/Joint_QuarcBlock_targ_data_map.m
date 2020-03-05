@@ -427,8 +427,8 @@
     ;%
     ;% Auto data (Joint_QuarcBlock_B)
     ;%
-      section.nData     = 5;
-      section.data(5)  = dumData; %prealloc
+      section.nData     = 6;
+      section.data(6)  = dumData; %prealloc
       
 	  ;% Joint_QuarcBlock_B.ServoCountstoRad
 	  section.data(1).logicalSrcIdx = 0;
@@ -446,9 +446,13 @@
 	  section.data(4).logicalSrcIdx = 3;
 	  section.data(4).dtTransOffset = 3;
 	
-	  ;% Joint_QuarcBlock_B.Clock
+	  ;% Joint_QuarcBlock_B.Sum
 	  section.data(5).logicalSrcIdx = 4;
 	  section.data(5).dtTransOffset = 4;
+	
+	  ;% Joint_QuarcBlock_B.Clock
+	  section.data(6).logicalSrcIdx = 5;
+	  section.data(6).dtTransOffset = 5;
 	
       nTotData = nTotData + section.nData;
       sigMap.sections(1) = section;
@@ -549,8 +553,8 @@
       dworkMap.sections(2) = section;
       clear section
       
-      section.nData     = 13;
-      section.data(13)  = dumData; %prealloc
+      section.nData     = 14;
+      section.data(14)  = dumData; %prealloc
       
 	  ;% Joint_QuarcBlock_DW.HILReadEncoder_PWORK
 	  section.data(1).logicalSrcIdx = 10;
@@ -592,17 +596,21 @@
 	  section.data(10).logicalSrcIdx = 19;
 	  section.data(10).dtTransOffset = 9;
 	
-	  ;% Joint_QuarcBlock_DW.dTheta_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.ToWorkspace6_PWORK.LoggedData
 	  section.data(11).logicalSrcIdx = 20;
 	  section.data(11).dtTransOffset = 10;
 	
-	  ;% Joint_QuarcBlock_DW.u_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.dTheta_PWORK.LoggedData
 	  section.data(12).logicalSrcIdx = 21;
 	  section.data(12).dtTransOffset = 11;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace3_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.u_PWORK.LoggedData
 	  section.data(13).logicalSrcIdx = 22;
 	  section.data(13).dtTransOffset = 12;
+	
+	  ;% Joint_QuarcBlock_DW.ToWorkspace3_PWORK.LoggedData
+	  section.data(14).logicalSrcIdx = 23;
+	  section.data(14).dtTransOffset = 13;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(3) = section;
@@ -612,27 +620,27 @@
       section.data(6)  = dumData; %prealloc
       
 	  ;% Joint_QuarcBlock_DW.HILInitialize_ClockModes
-	  section.data(1).logicalSrcIdx = 23;
+	  section.data(1).logicalSrcIdx = 24;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% Joint_QuarcBlock_DW.HILInitialize_QuadratureModes
-	  section.data(2).logicalSrcIdx = 24;
+	  section.data(2).logicalSrcIdx = 25;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% Joint_QuarcBlock_DW.HILInitialize_InitialEICounts
-	  section.data(3).logicalSrcIdx = 25;
+	  section.data(3).logicalSrcIdx = 26;
 	  section.data(3).dtTransOffset = 3;
 	
 	  ;% Joint_QuarcBlock_DW.HILReadEncoder_Buffer
-	  section.data(4).logicalSrcIdx = 26;
+	  section.data(4).logicalSrcIdx = 27;
 	  section.data(4).dtTransOffset = 5;
 	
 	  ;% Joint_QuarcBlock_DW.HILReadEncoder1_Buffer
-	  section.data(5).logicalSrcIdx = 27;
+	  section.data(5).logicalSrcIdx = 28;
 	  section.data(5).dtTransOffset = 6;
 	
 	  ;% Joint_QuarcBlock_DW.systemEnable
-	  section.data(6).logicalSrcIdx = 28;
+	  section.data(6).logicalSrcIdx = 29;
 	  section.data(6).dtTransOffset = 7;
 	
       nTotData = nTotData + section.nData;
@@ -665,8 +673,8 @@
   ;%
 
 
-  targMap.checksum0 = 902688086;
-  targMap.checksum1 = 1242474280;
-  targMap.checksum2 = 4200520688;
-  targMap.checksum3 = 3005918593;
+  targMap.checksum0 = 3941525393;
+  targMap.checksum1 = 770255765;
+  targMap.checksum2 = 3289268796;
+  targMap.checksum3 = 479546912;
 

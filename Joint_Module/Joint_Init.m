@@ -11,3 +11,4 @@ clear; clc; close all;
     Max = 200 * T/(2*pi);
     
     save('Joint_Init_Data', 'T', 'dT', 'F')
+    

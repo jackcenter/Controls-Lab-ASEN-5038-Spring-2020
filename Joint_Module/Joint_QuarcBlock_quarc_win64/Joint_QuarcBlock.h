@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.240
+ * Model version              : 1.241
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar  3 14:52:17 2020
+ * C source code generated on : Thu Mar  5 14:48:22 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -858,6 +858,7 @@ typedef struct {
   real_T TachDir;                      /* '<S1>/Tach Dir' */
   real_T ServoCountstoRad1;            /* '<S1>/Servo:  Counts to Rad1' */
   real_T SumofElements;                /* '<Root>/Sum of Elements' */
+  real_T Sum;                          /* '<Root>/Sum' */
   real_T Clock;                        /* '<Root>/Clock' */
 } B_Joint_QuarcBlock_T;
 
@@ -900,6 +901,10 @@ typedef struct {
   struct {
     void *LoggedData;
   } ToWorkspace5_PWORK;                /* '<Root>/To Workspace5' */
+
+  struct {
+    void *LoggedData;
+  } ToWorkspace6_PWORK;                /* '<Root>/To Workspace6' */
 
   struct {
     void *LoggedData;

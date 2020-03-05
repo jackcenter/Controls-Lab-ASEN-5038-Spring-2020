@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.240
+ * Model version              : 1.241
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar  3 14:52:17 2020
+ * C source code generated on : Thu Mar  5 14:48:22 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -60,14 +60,14 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&Joint_QuarcBlock_B.ServoCountstoRad), 0, 0, 5 }
+  { (char_T *)(&Joint_QuarcBlock_B.ServoCountstoRad), 0, 0, 6 }
   ,
 
   { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_AIMinimums[0]), 0, 0, 413 },
 
   { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_Card), 14, 0, 1 },
 
-  { (char_T *)(&Joint_QuarcBlock_DW.HILReadEncoder_PWORK), 11, 0, 13 },
+  { (char_T *)(&Joint_QuarcBlock_DW.HILReadEncoder_PWORK), 11, 0, 14 },
 
   { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_ClockModes), 6, 0, 8 }
 };
