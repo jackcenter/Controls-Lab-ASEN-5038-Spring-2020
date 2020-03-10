@@ -1,0 +1,2 @@
+#include <winuser.rh>
+1 RT_MANIFEST "USE_THIS_Closed_Loop_Motor_System_ID.auto.manifest"

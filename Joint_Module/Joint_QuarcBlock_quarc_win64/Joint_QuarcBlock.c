@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.241
+ * Model version              : 1.243
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Thu Mar  5 14:48:22 2020
+ * C source code generated on : Tue Mar 10 14:49:00 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -538,15 +538,15 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
     Joint_QuarcBlock_M->Timing.sampleHits = (&mdlSampleHits[0]);
   }
 
-  rtmSetTFinal(Joint_QuarcBlock_M, 39.998);
+  rtmSetTFinal(Joint_QuarcBlock_M, 79.998);
   Joint_QuarcBlock_M->Timing.stepSize0 = 0.002;
   Joint_QuarcBlock_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  Joint_QuarcBlock_M->Sizes.checksums[0] = (3941525393U);
-  Joint_QuarcBlock_M->Sizes.checksums[1] = (770255765U);
-  Joint_QuarcBlock_M->Sizes.checksums[2] = (3289268796U);
-  Joint_QuarcBlock_M->Sizes.checksums[3] = (479546912U);
+  Joint_QuarcBlock_M->Sizes.checksums[0] = (3310544479U);
+  Joint_QuarcBlock_M->Sizes.checksums[1] = (1130129534U);
+  Joint_QuarcBlock_M->Sizes.checksums[2] = (317205642U);
+  Joint_QuarcBlock_M->Sizes.checksums[3] = (2416266797U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
