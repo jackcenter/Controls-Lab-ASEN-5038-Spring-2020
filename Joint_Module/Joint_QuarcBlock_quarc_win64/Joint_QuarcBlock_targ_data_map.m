@@ -151,27 +151,27 @@
 	
 	  ;% Joint_QuarcBlock_P.SineWave_HCos
 	  section.data(21).logicalSrcIdx = 26;
-	  section.data(21).dtTransOffset = 219;
+	  section.data(21).dtTransOffset = 419;
 	
 	  ;% Joint_QuarcBlock_P.SineWave_PSin
 	  section.data(22).logicalSrcIdx = 27;
-	  section.data(22).dtTransOffset = 419;
+	  section.data(22).dtTransOffset = 819;
 	
 	  ;% Joint_QuarcBlock_P.SineWave_PCos
 	  section.data(23).logicalSrcIdx = 28;
-	  section.data(23).dtTransOffset = 619;
+	  section.data(23).dtTransOffset = 1219;
 	
 	  ;% Joint_QuarcBlock_P.Saturation_UpperSat
 	  section.data(24).logicalSrcIdx = 29;
-	  section.data(24).dtTransOffset = 819;
+	  section.data(24).dtTransOffset = 1619;
 	
 	  ;% Joint_QuarcBlock_P.Saturation_LowerSat
 	  section.data(25).logicalSrcIdx = 30;
-	  section.data(25).dtTransOffset = 820;
+	  section.data(25).dtTransOffset = 1620;
 	
 	  ;% Joint_QuarcBlock_P.MotorDir_Gain
 	  section.data(26).logicalSrcIdx = 31;
-	  section.data(26).dtTransOffset = 821;
+	  section.data(26).dtTransOffset = 1621;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(3) = section;
@@ -536,7 +536,7 @@
 	
 	  ;% Joint_QuarcBlock_DW.lastCos
 	  section.data(9).logicalSrcIdx = 8;
-	  section.data(9).dtTransOffset = 213;
+	  section.data(9).dtTransOffset = 413;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(1) = section;
@@ -553,8 +553,8 @@
       dworkMap.sections(2) = section;
       clear section
       
-      section.nData     = 14;
-      section.data(14)  = dumData; %prealloc
+      section.nData     = 15;
+      section.data(15)  = dumData; %prealloc
       
 	  ;% Joint_QuarcBlock_DW.HILReadEncoder_PWORK
 	  section.data(1).logicalSrcIdx = 10;
@@ -580,37 +580,41 @@
 	  section.data(6).logicalSrcIdx = 15;
 	  section.data(6).dtTransOffset = 5;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace1_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.Theta1_PWORK.LoggedData
 	  section.data(7).logicalSrcIdx = 16;
 	  section.data(7).dtTransOffset = 6;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace2_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.ToWorkspace1_PWORK.LoggedData
 	  section.data(8).logicalSrcIdx = 17;
 	  section.data(8).dtTransOffset = 7;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace4_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.ToWorkspace2_PWORK.LoggedData
 	  section.data(9).logicalSrcIdx = 18;
 	  section.data(9).dtTransOffset = 8;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace5_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.ToWorkspace4_PWORK.LoggedData
 	  section.data(10).logicalSrcIdx = 19;
 	  section.data(10).dtTransOffset = 9;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace6_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.ToWorkspace5_PWORK.LoggedData
 	  section.data(11).logicalSrcIdx = 20;
 	  section.data(11).dtTransOffset = 10;
 	
-	  ;% Joint_QuarcBlock_DW.dTheta_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.ToWorkspace6_PWORK.LoggedData
 	  section.data(12).logicalSrcIdx = 21;
 	  section.data(12).dtTransOffset = 11;
 	
-	  ;% Joint_QuarcBlock_DW.u_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.dTheta_PWORK.LoggedData
 	  section.data(13).logicalSrcIdx = 22;
 	  section.data(13).dtTransOffset = 12;
 	
-	  ;% Joint_QuarcBlock_DW.ToWorkspace3_PWORK.LoggedData
+	  ;% Joint_QuarcBlock_DW.u_PWORK.LoggedData
 	  section.data(14).logicalSrcIdx = 23;
 	  section.data(14).dtTransOffset = 13;
+	
+	  ;% Joint_QuarcBlock_DW.ToWorkspace3_PWORK.LoggedData
+	  section.data(15).logicalSrcIdx = 24;
+	  section.data(15).dtTransOffset = 14;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(3) = section;
@@ -620,27 +624,27 @@
       section.data(6)  = dumData; %prealloc
       
 	  ;% Joint_QuarcBlock_DW.HILInitialize_ClockModes
-	  section.data(1).logicalSrcIdx = 24;
+	  section.data(1).logicalSrcIdx = 25;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% Joint_QuarcBlock_DW.HILInitialize_QuadratureModes
-	  section.data(2).logicalSrcIdx = 25;
+	  section.data(2).logicalSrcIdx = 26;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% Joint_QuarcBlock_DW.HILInitialize_InitialEICounts
-	  section.data(3).logicalSrcIdx = 26;
+	  section.data(3).logicalSrcIdx = 27;
 	  section.data(3).dtTransOffset = 3;
 	
 	  ;% Joint_QuarcBlock_DW.HILReadEncoder_Buffer
-	  section.data(4).logicalSrcIdx = 27;
+	  section.data(4).logicalSrcIdx = 28;
 	  section.data(4).dtTransOffset = 5;
 	
 	  ;% Joint_QuarcBlock_DW.HILReadEncoder1_Buffer
-	  section.data(5).logicalSrcIdx = 28;
+	  section.data(5).logicalSrcIdx = 29;
 	  section.data(5).dtTransOffset = 6;
 	
 	  ;% Joint_QuarcBlock_DW.systemEnable
-	  section.data(6).logicalSrcIdx = 29;
+	  section.data(6).logicalSrcIdx = 30;
 	  section.data(6).dtTransOffset = 7;
 	
       nTotData = nTotData + section.nData;
@@ -673,8 +677,8 @@
   ;%
 
 
-  targMap.checksum0 = 3310544479;
-  targMap.checksum1 = 1130129534;
-  targMap.checksum2 = 317205642;
-  targMap.checksum3 = 2416266797;
+  targMap.checksum0 = 2278580779;
+  targMap.checksum1 = 1480582375;
+  targMap.checksum2 = 2036100492;
+  targMap.checksum3 = 761826554;
 

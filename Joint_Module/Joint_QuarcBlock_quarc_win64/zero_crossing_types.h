@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.243
+ * Model version              : 1.244
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar 10 14:49:00 2020
+ * C source code generated on : Thu Mar 12 15:03:53 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

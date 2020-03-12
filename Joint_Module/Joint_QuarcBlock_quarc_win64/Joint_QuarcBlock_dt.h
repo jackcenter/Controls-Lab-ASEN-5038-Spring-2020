@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.243
+ * Model version              : 1.244
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar 10 14:49:00 2020
+ * C source code generated on : Thu Mar 12 15:03:53 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -63,11 +63,11 @@ static DataTypeTransition rtBTransitions[] = {
   { (char_T *)(&Joint_QuarcBlock_B.ServoCountstoRad), 0, 0, 6 }
   ,
 
-  { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_AIMinimums[0]), 0, 0, 413 },
+  { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_AIMinimums[0]), 0, 0, 813 },
 
   { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_Card), 14, 0, 1 },
 
-  { (char_T *)(&Joint_QuarcBlock_DW.HILReadEncoder_PWORK), 11, 0, 14 },
+  { (char_T *)(&Joint_QuarcBlock_DW.HILReadEncoder_PWORK), 11, 0, 15 },
 
   { (char_T *)(&Joint_QuarcBlock_DW.HILInitialize_ClockModes), 6, 0, 8 }
 };
@@ -84,7 +84,7 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&Joint_QuarcBlock_P.HILWrite_analog_channels), 7, 0, 4 },
 
-  { (char_T *)(&Joint_QuarcBlock_P.HILInitialize_OOTerminate), 0, 0, 822 },
+  { (char_T *)(&Joint_QuarcBlock_P.HILInitialize_OOTerminate), 0, 0, 1622 },
 
   { (char_T *)(&Joint_QuarcBlock_P.HILInitialize_CKChannels), 6, 0, 4 },
 

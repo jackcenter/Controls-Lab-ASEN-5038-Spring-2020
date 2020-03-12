@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.243
+ * Model version              : 1.244
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar 10 14:49:00 2020
+ * C source code generated on : Thu Mar 12 15:03:53 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -38,7 +38,6 @@ void Joint_QuarcBlock_output(void)
   /* local block i/o variables */
   real_T rtb_MotorDir;
   real_T tmp;
-  real_T rtb_SineWave[200];
   int32_T i;
   real_T tmp_0;
 
@@ -105,13 +104,13 @@ void Joint_QuarcBlock_output(void)
   if (Joint_QuarcBlock_DW.systemEnable != 0) {
     tmp = 6.2831853071795862 / Joint_QuarcBlock_P.T;
     tmp_0 = Joint_QuarcBlock_M->Timing.t[1];
-    for (i = 0; i < 200; i++) {
+    for (i = 0; i < 400; i++) {
       Joint_QuarcBlock_DW.lastSin[i] = sin(tmp *
         Joint_QuarcBlock_ConstP.SineWave_rtw_collapsed_sub_expr[i] * tmp_0);
     }
 
     tmp = 6.2831853071795862 / Joint_QuarcBlock_P.T;
-    for (i = 0; i < 200; i++) {
+    for (i = 0; i < 400; i++) {
       Joint_QuarcBlock_DW.lastCos[i] = cos(tmp *
         Joint_QuarcBlock_ConstP.SineWave_rtw_collapsed_sub_expr[i] * tmp_0);
     }
@@ -119,32 +118,24 @@ void Joint_QuarcBlock_output(void)
     Joint_QuarcBlock_DW.systemEnable = 0;
   }
 
-  tmp = Joint_QuarcBlock_P.A * 1.2;
-  for (i = 0; i < 200; i++) {
-    rtb_SineWave[i] = ((Joint_QuarcBlock_DW.lastSin[i] *
-                        Joint_QuarcBlock_P.SineWave_PCos[i] +
-                        Joint_QuarcBlock_DW.lastCos[i] *
-                        Joint_QuarcBlock_P.SineWave_PSin[i]) *
-                       Joint_QuarcBlock_P.SineWave_HCos[i] +
-                       (Joint_QuarcBlock_DW.lastCos[i] *
-                        Joint_QuarcBlock_P.SineWave_PCos[i] -
-                        Joint_QuarcBlock_DW.lastSin[i] *
-                        Joint_QuarcBlock_P.SineWave_PSin[i]) *
-                       Joint_QuarcBlock_P.SineWave_Hsin[i]) * tmp +
+  /* Sum: '<Root>/Sum of Elements' */
+  tmp = -0.0;
+  for (i = 0; i < 400; i++) {
+    /* Sum: '<Root>/Sum of Elements' incorporates:
+     *  Sin: '<Root>/Sine Wave'
+     */
+    tmp += ((Joint_QuarcBlock_DW.lastSin[i] * Joint_QuarcBlock_P.SineWave_PCos[i]
+             + Joint_QuarcBlock_DW.lastCos[i] *
+             Joint_QuarcBlock_P.SineWave_PSin[i]) *
+            Joint_QuarcBlock_P.SineWave_HCos[i] + (Joint_QuarcBlock_DW.lastCos[i]
+             * Joint_QuarcBlock_P.SineWave_PCos[i] -
+             Joint_QuarcBlock_DW.lastSin[i] * Joint_QuarcBlock_P.SineWave_PSin[i])
+            * Joint_QuarcBlock_P.SineWave_Hsin[i]) * Joint_QuarcBlock_P.A +
       Joint_QuarcBlock_P.SineWave_Bias;
   }
 
-  /* End of Sin: '<Root>/Sine Wave' */
-
   /* Sum: '<Root>/Sum of Elements' */
-  tmp = -0.0;
-  for (i = 0; i < 200; i++) {
-    tmp += rtb_SineWave[i];
-  }
-
   Joint_QuarcBlock_B.SumofElements = tmp;
-
-  /* End of Sum: '<Root>/Sum of Elements' */
 
   /* Sum: '<Root>/Sum' */
   Joint_QuarcBlock_B.Sum = Joint_QuarcBlock_B.SumofElements -
@@ -197,7 +188,7 @@ void Joint_QuarcBlock_update(void)
   real_T HoldSine;
 
   /* Update for Sin: '<Root>/Sine Wave' */
-  for (i = 0; i < 200; i++) {
+  for (i = 0; i < 400; i++) {
     HoldSine = Joint_QuarcBlock_DW.lastSin[i];
     Joint_QuarcBlock_DW.lastSin[i] = Joint_QuarcBlock_DW.lastSin[i] *
       Joint_QuarcBlock_P.SineWave_HCos[i] + Joint_QuarcBlock_DW.lastCos[i] *
@@ -543,10 +534,10 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
   Joint_QuarcBlock_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  Joint_QuarcBlock_M->Sizes.checksums[0] = (3310544479U);
-  Joint_QuarcBlock_M->Sizes.checksums[1] = (1130129534U);
-  Joint_QuarcBlock_M->Sizes.checksums[2] = (317205642U);
-  Joint_QuarcBlock_M->Sizes.checksums[3] = (2416266797U);
+  Joint_QuarcBlock_M->Sizes.checksums[0] = (2278580779U);
+  Joint_QuarcBlock_M->Sizes.checksums[1] = (1480582375U);
+  Joint_QuarcBlock_M->Sizes.checksums[2] = (2036100492U);
+  Joint_QuarcBlock_M->Sizes.checksums[3] = (761826554U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -602,14 +593,14 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
 
   {
     int32_T i;
-    for (i = 0; i < 200; i++) {
+    for (i = 0; i < 400; i++) {
       Joint_QuarcBlock_DW.lastSin[i] = 0.0;
     }
   }
 
   {
     int32_T i;
-    for (i = 0; i < 200; i++) {
+    for (i = 0; i < 400; i++) {
       Joint_QuarcBlock_DW.lastCos[i] = 0.0;
     }
   }
@@ -637,9 +628,9 @@ RT_MODEL_Joint_QuarcBlock_T *Joint_QuarcBlock(void)
   Joint_QuarcBlock_M->Sizes.numU = (0);/* Number of model inputs */
   Joint_QuarcBlock_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   Joint_QuarcBlock_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  Joint_QuarcBlock_M->Sizes.numBlocks = (24);/* Number of blocks */
+  Joint_QuarcBlock_M->Sizes.numBlocks = (25);/* Number of blocks */
   Joint_QuarcBlock_M->Sizes.numBlockIO = (6);/* Number of block outputs */
-  Joint_QuarcBlock_M->Sizes.numBlockPrms = (878);/* Sum of parameter "widths" */
+  Joint_QuarcBlock_M->Sizes.numBlockPrms = (1678);/* Sum of parameter "widths" */
   return Joint_QuarcBlock_M;
 }
 

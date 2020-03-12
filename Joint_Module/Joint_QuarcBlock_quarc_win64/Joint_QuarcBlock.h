@@ -7,9 +7,9 @@
  *
  * Code generation for model "Joint_QuarcBlock".
  *
- * Model version              : 1.243
+ * Model version              : 1.244
  * Simulink Coder version : 9.1 (R2019a) 23-Nov-2018
- * C source code generated on : Tue Mar 10 14:49:00 2020
+ * C source code generated on : Thu Mar 12 15:03:53 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -871,8 +871,8 @@ typedef struct {
   real_T HILInitialize_AOVoltages[2];  /* '<S1>/HIL Initialize' */
   real_T HILInitialize_FilterFrequency[2];/* '<S1>/HIL Initialize' */
   real_T HILReadAnalog_Buffer;         /* '<S1>/HIL Read Analog' */
-  real_T lastSin[200];                 /* '<Root>/Sine Wave' */
-  real_T lastCos[200];                 /* '<Root>/Sine Wave' */
+  real_T lastSin[400];                 /* '<Root>/Sine Wave' */
+  real_T lastCos[400];                 /* '<Root>/Sine Wave' */
   t_card HILInitialize_Card;           /* '<S1>/HIL Initialize' */
   void *HILReadEncoder_PWORK;          /* '<S1>/HIL Read Encoder' */
   void *HILReadAnalog_PWORK;           /* '<S1>/HIL Read Analog' */
@@ -885,6 +885,10 @@ typedef struct {
   struct {
     void *LoggedData;
   } Theta_PWORK;                       /* '<Root>/Theta ' */
+
+  struct {
+    void *LoggedData;
+  } Theta1_PWORK;                      /* '<Root>/Theta 1' */
 
   struct {
     void *LoggedData;
@@ -928,10 +932,10 @@ typedef struct {
 
 /* Constant parameters (default storage) */
 typedef struct {
-  /* Expression: 2*pi/T*(1:200)
+  /* Expression: 2*pi/T*(1:400)
    * Referenced by: '<Root>/Sine Wave'
    */
-  real_T SineWave_rtw_collapsed_sub_expr[200];
+  real_T SineWave_rtw_collapsed_sub_expr[400];
 } ConstP_Joint_QuarcBlock_T;
 
 /* Backward compatible GRT Identifiers */
@@ -1021,16 +1025,16 @@ struct P_Joint_QuarcBlock_T_ {
   real_T SineWave_Bias;                /* Expression: 0
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
-  real_T SineWave_Hsin[200];           /* Computed Parameter: SineWave_Hsin
+  real_T SineWave_Hsin[400];           /* Computed Parameter: SineWave_Hsin
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
-  real_T SineWave_HCos[200];           /* Computed Parameter: SineWave_HCos
+  real_T SineWave_HCos[400];           /* Computed Parameter: SineWave_HCos
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
-  real_T SineWave_PSin[200];           /* Computed Parameter: SineWave_PSin
+  real_T SineWave_PSin[400];           /* Computed Parameter: SineWave_PSin
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
-  real_T SineWave_PCos[200];           /* Computed Parameter: SineWave_PCos
+  real_T SineWave_PCos[400];           /* Computed Parameter: SineWave_PCos
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
   real_T Saturation_UpperSat;          /* Expression: 10
