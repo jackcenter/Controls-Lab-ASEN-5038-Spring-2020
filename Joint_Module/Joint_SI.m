@@ -1,8 +1,31 @@
 clc; clear; close all;
-load('Joint_SI_CL_40s_Data.mat')
+
 load('Joint_Init_Data.mat')
 load('ID_parameters.mat')
+load('Joint_SI_Data.mat')
 
+R = fft(u);
+Y = fft(Theta);
+F = 0:2*pi/T:pi/dT-2*pi/T; 
+index0 = find(F<200 * T/(2*pi)); 
+% index0 = find(abs(R/length(R)) >= 9e-2); 
+B = 0*R;                     
+B(index0) = Y(index0)./(R(index0)+ Y(index0));         %System Response 
+B(index0) = abs(B(index0));               %Magnitude of System Response
+B_log = 20*log10(B);
+
+figure
+semilogx(F(1:201), B_log(1:201), 'k.')
+legend("Experiment Data", "Location", "southwest")
+xlim([1,100])
+xlabel("Frequency (rad/s)")
+ylim([-80, 40])
+ylabel("Magnitude (dB)")
+
+
+%% Closed Loop TF Theta / V
+load('Joint_Init_Data.mat')
+load('Joint_SI_CL_40s_Data.mat')
 % FFT of input and ouput 
 R = fft(u);
 Y = fft(Theta);
@@ -13,6 +36,14 @@ B = 0*R;
 B(index0) = Y(index0)./(R(index0)+ Y(index0));         %System Response 
 B(index0) = abs(B(index0));               %Magnitude of System Response
 B_log = 20*log10(B);
+
+figure
+semilogx(F, B_log, 'k.')
+legend("Experiment Data", "Location", "southwest")
+xlim([1,100])
+xlabel("Frequency (rad/s)")
+ylim([-80, 40])
+ylabel("Magnitude (dB)")
         
 
 %% Alpha / Theta

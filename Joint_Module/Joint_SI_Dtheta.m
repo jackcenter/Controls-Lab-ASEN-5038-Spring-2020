@@ -4,8 +4,13 @@ load('Joint_SI_CL_40s_dtheta_Data.mat')
 load('Joint_Init_Data.mat')
 load('ID_parameters.mat')
 
+F = 0:2*pi/T:4*pi/dT-2*pi/T;        %Frequency Vector
+
 R = fft(u);
 dTheta_tf = fft(dTheta);
+figure
+plot(F, R)
+
 
 index1 = find(F<20 * T/(2*pi)); 
 % G = 0*dTheta_tf;
