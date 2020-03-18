@@ -7,12 +7,15 @@ load('ID_parameters.mat')
 R = fft(u);
 dTheta_tf = fft(dTheta);
 
-index1 = find(F<200 * T/(2*pi)); 
-G = 0*dTheta_tf;
-G(index1) = dTheta_tf(index1)./(R(index1)+dTheta_tf(index1));
-G(index1) = abs(G(index1));
+index1 = find(F<20 * T/(2*pi)); 
+% G = 0*dTheta_tf;
+% G(index1) = dTheta_tf(index1)./(R(index1)+dTheta_tf(index1));
+% G(index1) = abs(G(index1));
+G = dTheta_tf./(R + dTheta_tf);
 G_log = 20*log10(G);
-plot_index = find(G_log < 50);
+G_log = G_log(index1);
+plot_index = find(G_log < -4);
+
 
 % Making changes
 G_log = G_log(plot_index);
@@ -22,7 +25,7 @@ K = mean(G_log(3:5));
 K_3dB = K - 3;
 
 figure
-semilogx(F, G_log, 'k')
+semilogx(F, G_log, 'k.')
 hold on
 
 s = tf('s');
