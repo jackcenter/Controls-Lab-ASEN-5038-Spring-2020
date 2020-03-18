@@ -29,33 +29,39 @@ s = tf('s');
 H = db2mag(K)/((s/omega1 + 1)*(s/omega2 + 1));
 [mag, ~, wout] = bode(H, {.1,1000});
 bodemag(H)
-
+plot(
 mag = reshape(mag, 1, []);
-wout = reshape(wout, 1, []);
-plot(wout,mag2db(mag))
-xlim([1,100])
-ylim([-100, 100])
+mag = reshape(mag, 1, []);
 
 max_freq = 12;
-plot_data(wout, mag, F, B_log)
+plot_data(wout, mag, F, B_log, max_freq)
 %% Parameter ID : K/J1 and B1/J1
 K_J1 = 54.98;
 B1_J1 = 36.57;
 
 save('ID_parameters.mat', 'K_J1', 'B1_J1')
 
-function plot_data(x1, y1, x2, y2)
+function plot_data(x1, y1, x2, y2, max_x)
+x1 = reshape(x1, 1, []);
+y1 = reshape(y1, 1, []);
+x2 = reshape(x2, 1, []);
+y2 = reshape(y2, 1, []);
+
+x1 = find(x1 < max_x);
+x2 = find(x2 < max_x);
+len1 = length(x1);
+len2 = length(x2);
+y1 = y1(1:len1);
+y2 = y2(1:len2);
 
 figure
 hold on
 plot(x1, mag2db(y1))
 set(gca, 'XScale', 'log')
-semilogx(x2, y2, '.')
-legend("Transfer Function", "Experiment Data", "Location", "southwest")
-xlim([.1,100])
-xlabel("Frequency (rad/s)")
-ylim([-80, 40])
-ylabel("Magnitude (dB)")
+semilogx(x2, y2)
+legend("1")
+xlim([1,100])
+ylim([-100, 100])
 hold off
 
 end

@@ -32,8 +32,8 @@ s = tf('s');
 w_n = 13.45;
 xi = .05;
 H_at = s^2/(s^2 + 2*xi*w_n*s + w_n^2);
-% bodemag(H_at)
-% hold off
+bodemag(H_at)
+hold off
 
 [mag, ~, wout] = bode(H_at);
 mag = reshape(mag, 1, []);
@@ -59,9 +59,9 @@ G_log = 20*log10(G);
 K = mean(G_log(3:15));
 K_3dB = K - 3;
 
-figure
-semilogx(F, G_log, 'k')
-hold on
+% figure
+% semilogx(F, G_log, 'k')
+% hold on
 s = tf('s');
 
 Index_id2 = find(G_log(2:end) < K_3dB);
@@ -71,8 +71,8 @@ omega2 = 13;
 omega3 = 15;
 
 H_at = db2mag(K)/Ks_J2*(s^2 + B2_J2*s + Ks_J2) / ((s/omega1 + 1)*(s/omega2 + 1) *(s/omega3 + 1));
-bodemag(H_at)
-hold off
+% bodemag(H_at)
+% hold off
 
 %% Theta / R
 % K = mean(B_log(2:4));

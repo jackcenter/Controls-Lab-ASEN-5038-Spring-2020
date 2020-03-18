@@ -36,7 +36,7 @@ omega3 = 1;
 
 eta = 0.02;
 % H_at = db2mag(K)/Ks_J2*(s^2 + B2_J2*s + Ks_J2) / ((s/omega1 + 1)*(s/omega2 + 1) *(s/omega3 + 1));
-H_at = (s^2 + eta*60*s + 900) / (s^3 + s^2 + s + 1);
+H_at = (s^2 + eta*60*s + 900) / (s^2 + s);
 bodemag(H_at)
 hold off
 
